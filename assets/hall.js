@@ -371,6 +371,13 @@ cc.Class({
 
         window.require(this._storagePath + "/src/main.js");
     },
+
+    on_create_game: function () {
+        cc.loader.loadRes('prefab/game1', cc.Prefab, (err, res) => {
+            console.log('game: =>', res);
+        });
+    },
+
     //*************************子游戏demo 结束***************************//
 
     onDestroy: function () {
