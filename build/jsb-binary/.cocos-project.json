@@ -1,0 +1,8 @@
+{
+  "engine_type": "prebuilt",
+  "engine_version": "Cocos2d-x-lite v1.8.2",
+  "has_native": true,
+  "project_type": "js",
+  "projectName": "hall",
+  "packageName": "org.cocos2d.hall"
+}

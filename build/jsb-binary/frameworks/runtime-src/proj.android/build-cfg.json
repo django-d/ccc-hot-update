@@ -1,0 +1,35 @@
+{
+    "ndk_module_path" :[
+        "/Applications/CocosCreator.app/Contents/Resources/cocos2d-x",
+        "/Applications/CocosCreator.app/Contents/Resources/cocos2d-x/cocos",
+        "/Applications/CocosCreator.app/Contents/Resources/cocos2d-x/external"
+    ],
+    "copy_resources": [
+        {
+            "from": "../../../src",
+            "to": "src"
+        },
+        {
+            "from": "../../../res",
+            "to": "res"
+        },
+        {
+            "from": "../../../main.js",
+            "to": ""
+        }
+    ],
+    "must_copy_resources": [
+        {
+            "from": "../../../script",
+            "to": "script"
+        },
+        {
+            "from": "../../../config.json",
+            "to": ""
+        },
+        {
+            "from": "../../../project.json",
+            "to": ""
+        }
+    ]
+}

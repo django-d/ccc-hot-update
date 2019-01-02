@@ -1,0 +1,19 @@
+{
+  "androidStudio": true,
+  "apiLevel": "android-10",
+  "appABIs": [],
+  "buildPath": "./build",
+  "debug": false,
+  "includeEruda": false,
+  "keystoreAlias": "",
+  "keystoreAliasPassword": "",
+  "keystorePassword": "",
+  "keystorePath": "",
+  "platform": "ios",
+  "previewHeight": "720",
+  "previewWidth": "1280",
+  "sourceMaps": false,
+  "template": "binary",
+  "useDebugKeystore": true,
+  "vsVersion": "auto"
+}
