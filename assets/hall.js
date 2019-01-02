@@ -374,13 +374,17 @@ cc.Class({
 
     on_create_game: function () {
         cc.loader.loadRes('prefab/game1', cc.Prefab, (err, res) => {
-            console.log('game: =>', res);
+            console.log('game1: =>', res);
         });
     },
 
     on_create_game2: function () {
         cc.loader.loadRes('prefab/game2', cc.Prefab, (err, res) => {
             console.log('game2: =>', res);
+            const node = cc.instantiate(res);
+            node.parent = this.node;
+            node.x = 0;
+            node.y = 0;
         });
     },
 
