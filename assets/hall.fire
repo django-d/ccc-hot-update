@@ -1620,7 +1620,7 @@
       "__id__": 2
     },
     "component": "hall",
-    "handler": "on_create_game",
+    "handler": "on_create_game2",
     "customEventData": ""
   },
   {

@@ -378,6 +378,12 @@ cc.Class({
         });
     },
 
+    on_create_game2: function () {
+        cc.loader.loadRes('prefab/game2', cc.Prefab, (err, res) => {
+            console.log('game2: =>', res);
+        });
+    },
+
     //*************************子游戏demo 结束***************************//
 
     onDestroy: function () {
