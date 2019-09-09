@@ -11,8 +11,8 @@ if (jsb) {
 }
 
 window.boot = function () {
-    var isLoadedFlag = jsb.fileUtils.isFileExist(jsb.fileUtils.getWritablePath() + '/' + "AllGame/hall/src/settings.js"); //是否下载过大厅
-    cc.INGAME = isLoadedFlag ? ((jsb.fileUtils ? jsb.fileUtils.getWritablePath() : '/') + "AllGame/hall/") : "";
+    var isLoadedFlag = jsb.fileUtils.isFileExist(jsb.fileUtils.getWritablePath() + '/' + "update/hall/src/settings.js"); //是否下载过大厅
+    cc.INGAME = isLoadedFlag ? ((jsb.fileUtils ? jsb.fileUtils.getWritablePath() : '/') + "update/hall/") : "";
     require(cc.INGAME + 'src/settings.js');
     settings = window._CCSettings;
     window._CCSettings = undefined;

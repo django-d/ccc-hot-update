@@ -11,12 +11,12 @@ export default class HotUpdate {
 
   _updateListener;
 
-  _am;
+  _am: IAssetsManager;
 
   getfiles(name: string, mmm) {
     this._storagePath =
       (jsb.fileUtils ? jsb.fileUtils.getWritablePath() : "/") +
-      "ALLGame/" +
+      "update/" +
       name;
     console.log("_storagePath:", this._storagePath);
 
@@ -108,7 +108,7 @@ export default class HotUpdate {
     console.log("更新文件:" + filees);
   }
 
-  updateCb(event) {
+  updateCb(event: IUpdateEvent) {
     var needRestart = false;
 
     console.log("升级执行:" + event.getEventCode());
@@ -296,11 +296,19 @@ export default class HotUpdate {
   }
 
   enter_sub_game() {
-    // if (!this._storagePath) {
-    //     cc.find('Canvas/label').getComponent(cc.Label).string = '请先点击下载游戏，检查版本是否更新！！！';
-    //     return;
-    // }
-    // window.require(this._storagePath + '/src/main.js');
+    if (!this._storagePath) {
+      cc.find("Canvas/label").getComponent(cc.Label).string =
+        "请先点击下载游戏，检查版本是否更新！！！";
+      return;
+    }
+
+    if (jsb.fileUtils.isFileExist(this._storagePath + "/src/main.js")) {
+      console.log("main 文件存在");
+    } else {
+      console.log("main 不文件存在");
+    }
+
+    window.require(this._storagePath + "/src/main.js");
   }
 
   on_create_game() {
@@ -323,9 +331,35 @@ export default class HotUpdate {
     });
   }
 
-  //*************************子游戏demo 结束***************************//
-
   onDestroy() {
     console.log("hall => destroy");
   }
+}
+
+interface IAssetsManager {
+  update();
+  checkUpdate();
+  loadLocalManifest(url: string);
+  loadLocalManifest(manifest, url: string);
+  setVerifyCallback(cb: Function); // (path, asset) {}
+  // Some Android device may slow down the download process when concurrent tasks is too much.
+  // The value may not be accurate, please do more test and find what's most suitable for your game.
+  setMaxConcurrentTask(count: number);
+  setEventCallback(cb: Function);
+  downloadFailedAssets();
+  getState();
+
+  getLocalManifest();
+}
+
+interface IUpdateEvent {
+  getPercent(): number; // 文件百分比
+  getPercentByFile(): number; // 字节百分比
+  getDownloadedFiles(): number; // 下载的文件个数
+  getTotalFiles(): number; // 下载的总文件个数
+  getDownloadedBytes(): number; // 下载字节
+  getTotalBytes(): number; // 总字节
+  getMessage(); // 获取消息
+  getAssetId();
+  getEventCode(); // 状态
 }

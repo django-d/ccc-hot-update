@@ -4,26 +4,23 @@ window.boot = function () {
 
     var _CCSettings = null;
 
-    // cc.INGAME = "";
-    // cc.log(cc.INGAME);
-
-    if (!cc.bcbm) {
-        cc.INGAME = (jsb.fileUtils ? jsb.fileUtils.getWritablePath() : '/') + "ALLGame/subgame/";
+    if (!cc.subgame) {
+        cc.INGAME = (jsb.fileUtils ? jsb.fileUtils.getWritablePath() : '/') + "update/subgame/";
         require(cc.INGAME + 'src/settings.js');
         _CCSettings = window._CCSettings;
         window._CCSettings = undefined;
         require(cc.INGAME + 'src/' + (_CCSettings.debug ? 'project.dev.js' : 'project.js'));
     } else {
-        _CCSettings = cc.bcbm;
+        _CCSettings = cc.subgame;
     }
 
     var settings = _CCSettings;
 
-    cc.bcbm = settings;
-    // console.log('cc.bcbm', JSON.stringify(cc.bcbm));
+    cc.subgame = settings;
+    // console.log('cc.subgame', JSON.stringify(cc.subgame));
 
     if (!cc.hall) {
-        var settingPath = (jsb.fileUtils ? jsb.fileUtils.getWritablePath() : '/') + "AllGame/hall/";
+        var settingPath = (jsb.fileUtils ? jsb.fileUtils.getWritablePath() : '/') + "update/hall/";
         window.require(settingPath + 'src/settings.js');
     } else {
         window._CCSettings = cc.hall;

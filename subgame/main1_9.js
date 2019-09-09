@@ -7,7 +7,7 @@ console.log("wo过来");
 
     var settings = null;
 
-    cc.INGAME = (jsb.fileUtils ? jsb.fileUtils.getWritablePath() : '/') + "ALLGame/subgame/";
+    cc.INGAME = (jsb.fileUtils ? jsb.fileUtils.getWritablePath() : '/') + "update/subgame/";
 
 
 

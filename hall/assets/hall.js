@@ -38,7 +38,7 @@ cc.Class({
     getfiles: function (name, mmm) {
 
 
-        this._storagePath = ((jsb.fileUtils ? jsb.fileUtils.getWritablePath() : '/') + 'ALLGame/' + name);
+        this._storagePath = ((jsb.fileUtils ? jsb.fileUtils.getWritablePath() : '/') + 'update/' + name);
         console.log('_storagePath:', this._storagePath);
         var UIRLFILE = "http://192.168.1.166:8080/down/remote-assets/" + name;
         var filees = this._storagePath + "/peision.manifest";
