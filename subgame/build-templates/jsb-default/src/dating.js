@@ -1,19 +1,19 @@
 if (jsb) {
-	var hotUpdateSearchPaths = localStorage.getItem('HotUpdateSearchPaths');
-	if (hotUpdateSearchPaths) {
-	jsb.fileUtils.setSearchPaths(JSON.parse(hotUpdateSearchPaths)); 
-   }
-} 
+    var hotUpdateSearchPaths = localStorage.getItem('HotUpdateSearchPaths');
+    if (hotUpdateSearchPaths) {
+        jsb.fileUtils.setSearchPaths(JSON.parse(hotUpdateSearchPaths));
+    }
+}
 cc.director.startAnimation();
 
 window.boot = function () {
-	
+
 
     'use strict';
 
     if (!cc.hall) {
-        var isLoadedFlag = UpdateHelper.isDownloaded("hall");//是否下载过大厅
-        cc.INGAME = isLoadedFlag ? ((jsb.fileUtils ? jsb.fileUtils.getWritablePath() : '/') + "update/hall/") : "";
+        var isLoadedFlag = jsb.fileUtils.isFileExist(jsb.fileUtils.getWritablePath() + '/' + "AllGame/hall/src/settings.js"); //是否下载过大厅
+        cc.INGAME = isLoadedFlag ? ((jsb.fileUtils ? jsb.fileUtils.getWritablePath() : '/') + "AllGame/hall/") : "";
         require(cc.INGAME + 'src/settings.js');
         _CCSettings = window._CCSettings;
         window._CCSettings = undefined;
@@ -24,7 +24,7 @@ window.boot = function () {
 
     var settings = _CCSettings;
 
-    if ( !settings.debug ) {
+    if (!settings.debug) {
         var uuids = settings.uuids;
 
         var rawAssets = settings.rawAssets;
@@ -75,8 +75,7 @@ window.boot = function () {
             if (cc.sys.isMobile) {
                 if (settings.orientation === 'landscape') {
                     cc.view.setOrientation(cc.macro.ORIENTATION_LANDSCAPE);
-                }
-                else if (settings.orientation === 'portrait') {
+                } else if (settings.orientation === 'portrait') {
                     cc.view.setOrientation(cc.macro.ORIENTATION_PORTRAIT);
                 }
                 cc.view.enableAutoFullScreen([
@@ -87,7 +86,7 @@ window.boot = function () {
                 ].indexOf(cc.sys.browserType) < 0);
             }
 
-        
+
         }
 
         // init assets
@@ -99,7 +98,7 @@ window.boot = function () {
             md5AssetsMap: settings.md5AssetsMap
         });
 
-        var launchScene = "db://assets/hall/scenes/ChooseGame.fire";
+        var launchScene = "db://assets/hall.fire";
 
         // load scene
         cc.director.loadScene(launchScene, null,
@@ -119,11 +118,10 @@ window.boot = function () {
             return 'src/' + x;
         });
         jsList.push(bundledScript);
-    }
-    else {
+    } else {
         jsList = [bundledScript];
     }
-    
+
     var option = {
         id: 'GameCanvas',
         scenes: settings.scenes,
