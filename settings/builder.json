@@ -1,32 +1,40 @@
 {
-  "appKey": "",
-  "appSecret": "",
-  "encryptJs": true,
+  "android-instant": {
+    "REMOTE_SERVER_ROOT": "",
+    "host": "",
+    "pathPattern": "",
+    "recordPath": "",
+    "scheme": "https",
+    "skipRecord": false
+  },
+  "appBundle": false,
+  "baidugame": {
+    "REMOTE_SERVER_ROOT": "",
+    "appid": "testappid",
+    "orientation": "portrait",
+    "subContext": ""
+  },
+  "encryptJs": false,
   "excludeScenes": [],
   "fb-instant-games": {},
-  "includeAnySDK": false,
   "includeSDKBox": false,
   "inlineSpriteFrames": true,
   "inlineSpriteFrames_native": true,
-  "jailbreakPlatform": false,
   "md5Cache": false,
   "mergeStartScene": false,
-  "oauthLoginServer": "",
   "optimizeHotUpdate": false,
   "orientation": {
     "landscapeLeft": true,
     "landscapeRight": true,
-    "portrait": false,
+    "portrait": true,
     "upsideDown": false
   },
   "packageName": "org.cocos2d.hall",
-  "privateKey": "",
   "qqplay": {
     "REMOTE_SERVER_ROOT": "",
     "orientation": "portrait"
   },
-  "renderMode": "0",
-  "startScene": "92bc63d6-94c8-4464-b854-b6b5d07d4743",
+  "startScene": "7bae9db5-5098-49b0-b306-bcf73c799a85",
   "title": "hall",
   "webOrientation": "auto",
   "wechatgame": {

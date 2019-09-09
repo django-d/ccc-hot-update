@@ -17,6 +17,7 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
+        // window.require = require;
         cc.oft = {};
         cc.loader.loadResDir(
             "data",
@@ -77,13 +78,6 @@ cc.Class({
 
         this._am = new jsb.AssetsManager('', this._storagePath, versionCompareHandle);
 
-        if (!cc.sys.ENABLE_GC_FOR_NATIVE_OBJECTS) {
-            this._am.retain();
-        }
-
-
-
-
 
         this._am.setVerifyCallback(function (path, asset) {
 
@@ -113,17 +107,14 @@ cc.Class({
         }
 
         if (mmm == 1) {
-
-            this._updateListener = new jsb.EventListenerAssetsManager(this._am, this.updateCb.bind(this));
+            this._am.setEventCallback(this.updateCb.bind(this))
 
         } else {
-
-            this._updateListener = new jsb.EventListenerAssetsManager(this._am, this.checkCb.bind(this));
-
+            this._am.setEventCallback(this.checkCb.bind(this));
         }
 
 
-        cc.eventManager.addListener(this._updateListener, 1);
+        // cc.eventManager.addListener(this._updateListener, 1);
 
 
         if (this._am.getState() === jsb.AssetsManager.State.UNINITED) {
@@ -228,7 +219,9 @@ cc.Class({
                 /*8更新完成*/
                 cc.find("Canvas/label").getComponent(cc.Label).string = "更新完成";
                 console.log('更新完成');
-                needRestart = true;
+                if (this.updateName == 'hall') {
+                    needRestart = true;
+                }
                 break;
 
             case jsb.EventAssetsManager.UPDATE_FAILED:
@@ -369,6 +362,12 @@ cc.Class({
             return;
         }
 
+        if (jsb.fileUtils.isFileExist(this._storagePath + "/src/main.js")) {
+            console.log('main 文件存在');
+        } else {
+            console.log('main 不文件存在');
+        }
+
         window.require(this._storagePath + "/src/main.js");
     },
 
@@ -390,6 +389,17 @@ cc.Class({
             node.x = 0;
             node.y = 0;
         });
+    },
+
+    endgame(info) {
+        if (cc.sys.isBrowser) {
+            this.initBrowserCopy();
+            this.onBrowserCopyClick(info);
+        } else if (cc.sys.os === cc.sys.OS_ANDROID) {
+            jsb.reflection.callStaticMethod('com.django.game/GameSdk', 'onEndGame', '(Ljava/lang/String;)V', info);
+        } else if (cc.sys.os === cc.sys.OS_IOS) {
+            jsb.reflection.callStaticMethod('AppController', 'backToFlutter');
+        }
     },
 
     //*************************子游戏demo 结束***************************//

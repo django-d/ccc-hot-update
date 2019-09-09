@@ -36,7 +36,19 @@ cc.Class({
     },
 
     on_enter_click() {
-        cc.director.loadScene('hall');
+        // cc.director.loadScene('hall');
+        this.endgame('我回去咯')
+    },
+
+    endgame(info) {
+        if (cc.sys.isBrowser) {
+            this.initBrowserCopy();
+            this.onBrowserCopyClick(info);
+        } else if (cc.sys.os === cc.sys.OS_ANDROID) {
+            jsb.reflection.callStaticMethod('com.django.game/GameSdk', 'onEndGame', '(Ljava/lang/String;)V', info);
+        } else {
+            console.log('startCopy');
+        }
     }
 
 

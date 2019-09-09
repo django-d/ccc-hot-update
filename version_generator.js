@@ -54,8 +54,8 @@ var manifest = {
 };
 
 
-var dest = './build/jsb-binary';
-var src = './build/jsb-binary';
+var dest = './build209/jsb-default';
+var src = './build209/jsb-default';
 var LUJIN = process.cwd() + "/" + src;
 
 
